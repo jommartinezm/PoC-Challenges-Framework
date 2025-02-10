@@ -1,5 +1,5 @@
 import streamlit as st
-import openai as OpenAI
+import openai  # Utilizamos la librería 'openai', no OpenAI
 
 # Título de la aplicación
 st.title("Configuración de Retos en Spin Premia 🎯")
@@ -14,8 +14,8 @@ if not openai_api_key:
 
 # Si la API Key está disponible, configuramos el cliente de OpenAI
 if openai_api_key:
-    # Crear un cliente de OpenAI
-    client = OpenAI(api_key=openai_api_key)
+    # Configuramos la clave de OpenAI de la manera correcta
+    openai.api_key = openai_api_key
 
     # Inicializar el estado de la conversación
     if "messages" not in st.session_state:
@@ -309,7 +309,7 @@ if openai_api_key:
             st.markdown(prompt)
 
         # Generar respuesta del chatbot con el contexto y las preguntas progresivas
-        response = OpenAI.ChatCompletion.create(  # Usar el método correcto
+        response = openai.api_key.ChatCompletion.create(  # Usar el método correcto
             model="gpt-3.5-turbo",  # El modelo que estás utilizando
             messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],  # Lista de mensajes
             temperature=0.3
