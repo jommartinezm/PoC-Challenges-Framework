@@ -223,7 +223,7 @@ if prompt := st.chat_input("Escribe tu respuesta..."):    # Agregar la respuesta
         st.markdown(prompt)
 
     # Generar respuesta del chatbot con el contexto y las preguntas progresivas
-    response = openai.ChatCompletion.create(  # Usar el método correcto
+    response = client.ChatCompletion.create(  # Usar el método correcto
         model="gpt-3.5-turbo",  # El modelo que estás utilizando
         messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],  # Lista de mensajes
         temperature=0.3
