@@ -309,7 +309,7 @@ if openai_api_key:
             st.markdown(prompt)
 
         # Generar respuesta del chatbot con el contexto y las preguntas progresivas
-        response = openai.api_key.ChatCompletion.create(  # Usar el método correcto
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # El modelo que estás utilizando
             messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],  # Lista de mensajes
             temperature=0.3
