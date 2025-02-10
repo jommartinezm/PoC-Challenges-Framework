@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import openai as OpenAI
 
 # Título de la aplicación
 st.title("Configuración de Retos en Spin Premia 🎯")
