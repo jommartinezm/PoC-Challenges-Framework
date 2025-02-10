@@ -4,7 +4,17 @@ from openai import OpenAI
 # Título de la aplicación
 st.title("Configuración de Retos en Spin Premia 🎯")
 
-# Inicializar el estado de la conversación
+# Ask user for their OpenAI API key via `st.text_input`.
+# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
+# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
+openai_api_key = st.text_input("OpenAI API Key", type="password")
+if not openai_api_key:
+    st.info("Please add your OpenAI API key to continue.", icon="🗝️")
+else:
+    # Create an OpenAI client.
+    client = OpenAI(api_key=openai_api_key)
+
+    # Inicializar el estado de la conversación
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
